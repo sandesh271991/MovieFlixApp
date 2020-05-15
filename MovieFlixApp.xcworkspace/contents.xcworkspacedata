@@ -2,6 +2,12 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:MoviesViewModel.swift">
+   </FileRef>
+   <FileRef
+      location = "group:/Users/Sandesh/Desktop/MovieFlix/MovieFlixApp/MovieFlixApp/MovieCell.swift">
+   </FileRef>
+   <FileRef
       location = "group:MovieFlixApp.xcodeproj">
    </FileRef>
    <FileRef
