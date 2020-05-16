@@ -13,6 +13,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     @IBOutlet weak var collectionView: UICollectionView!
     var searchArray = [Result]()
     var realData = [Result]()
+    
     @IBOutlet weak var searchBar: UISearchBar!
     
     var moviesViewModel: MoviesViewModel?
@@ -50,9 +51,6 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         self.navigationItem.searchController?.searchBar.delegate = self
         self.definesPresentationContext = true
         
-        
-        
-        
     }
     
     func configureCollectionView() {
@@ -67,9 +65,6 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         ])
     }
     
-    //    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-    //           return CGSize(width: screenWidth, height: screenWidth)
-    //       }
     func numberOfSections(in collectionView: UICollectionView) ->  Int {
         return 1
     }
@@ -77,32 +72,51 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         return searchArray.count
     }
     
+    @IBAction func editButtonTapped(sender: UIButton)  -> Void {
+        let cell = sender.superview as! UICollectionViewCell
+        let itemIndex = self.collectionView.indexPath(for: cell)!.item
+        searchArray.remove(at: itemIndex)
+        self.collectionView.reloadData()
+        
+    }
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellID", for: indexPath) as? MovieCell {
             
+            
             cell.lblMovieName.text = "\(String(describing: searchArray[indexPath.row].title))"
             cell.imgMovie.loadImageUsingCache(withUrl: "https://image.tmdb.org/t/p/w342\(String(describing: searchArray[indexPath.row].posterPath))")
-
+            
             cell.lblMovieDescription.text = "\(String(describing: searchArray[indexPath.row].overview))"
+            
+            let UpSwipe = UISwipeGestureRecognizer(target: self, action: #selector(swipeToDelete))
+            UpSwipe.direction = UISwipeGestureRecognizer.Direction.left
+            cell.addGestureRecognizer(UpSwipe)
+            
+            
+            let editButton = UIButton(frame: CGRect(x: cell.bounds.width - 50, y: (cell.bounds.height) - 50 , width: 50, height: 50))
+            editButton.setBackgroundImage(UIImage(systemName: "xmark.circle.fill"), for: UIControl.State.normal)
+            editButton.tintColor = .red
+            editButton.addTarget(self, action: #selector(editButtonTapped), for: UIControl.Event.touchUpInside)
+            editButton.tag = indexPath.row
+            editButton.isUserInteractionEnabled = true
+            
+            cell.addSubview(editButton)
             
             return cell
         } else {
             return UICollectionViewCell()
         }
     }
-
     
-    
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        self.searchArray.removeAll()
-        
-        self.searchArray = self.realData
+    @objc func swipeToDelete(sender: UISwipeGestureRecognizer) {
+        let cell = sender.view as! UICollectionViewCell
+        let itemIndex = self.collectionView.indexPath(for: cell)!.item
+        searchArray.remove(at: itemIndex)
         self.collectionView.reloadData()
-        
-        
     }
     
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         self.searchArray.removeAll()
         for item in moviesViewModel?.result ?? []{
             if (item.title.contains(searchBar.text!)) {
@@ -110,32 +124,29 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             }
         }
         self.collectionView.reloadData()
+    }    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        self.searchArray.removeAll()
+        self.searchArray = self.realData
+        self.collectionView.reloadData()
     }
     
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let kWhateverHeightYouWant = 400
         
-        let searchView: UICollectionReusableView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "searchBar", for: indexPath)
+        return CGSize(width: collectionView.bounds.size.width, height: CGFloat(kWhateverHeightYouWant))
+    }
+    
+    internal func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath){
+
+        let movieDetailsVC = self.storyboard?.instantiateViewController(identifier: "MovieDetailsVC") as! MovieDetailsVC
+        movieDetailsVC.movieDetails = searchArray[indexPath.row]
+        self.navigationController?.pushViewController(movieDetailsVC, animated: true)
         
-        return searchView
     }
-    
-   func collectionView(_ collectionView: UICollectionView,
-                                layout collectionViewLayout: UICollectionViewLayout,
-                                sizeForItemAt indexPath: IndexPath) -> CGSize {
-    var kWhateverHeightYouWant = 400
-    
-    return CGSize(width: collectionView.bounds.size.width, height: CGFloat(kWhateverHeightYouWant))
-    }
-    
-    //     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-    //
-    //        let searchView: UICollectionReusableView = collectionView.dequeueReusableSupplementaryView(ofKind: uicollectionelemen,
-    //        withReuseIdentifier: "searchBar",
-    //        for: indexPath)
-    //
-    //        return searchView
-    //
-    //    }
+
     
     func createCustomLayout() -> UICollectionViewLayout {
         
@@ -160,6 +171,5 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         }
         return layout
     }
-    
 }
 

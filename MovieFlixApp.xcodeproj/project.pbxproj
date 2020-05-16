@@ -23,6 +23,7 @@
 		0284A852246CFAC1009602CD /* MovieFlixAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0284A851246CFAC1009602CD /* MovieFlixAppTests.swift */; };
 		0284A85D246CFAC1009602CD /* MovieFlixAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0284A85C246CFAC1009602CD /* MovieFlixAppUITests.swift */; };
 		0284A86D246CFE13009602CD /* MovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0284A86C246CFE12009602CD /* MovieCell.swift */; };
+		02B2BC6D246FB4A10060C17E /* MovieDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B2BC6C246FB4A10060C17E /* MovieDetailsVC.swift */; };
 		02CE4DE4246D08B300770AE6 /* MoviesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02CE4DE3246D08B300770AE6 /* MoviesModel.swift */; };
 		02CE4DE6246D091200770AE6 /* Webservice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02CE4DE5246D091200770AE6 /* Webservice.swift */; };
 		02CE4DEC246D0E6E00770AE6 /* MoviesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02CE4DEB246D0E6D00770AE6 /* MoviesViewModel.swift */; };
@@ -72,6 +73,7 @@
 		0284A85C246CFAC1009602CD /* MovieFlixAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieFlixAppUITests.swift; sourceTree = "<group>"; };
 		0284A85E246CFAC1009602CD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0284A86C246CFE12009602CD /* MovieCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MovieCell.swift; path = /Users/Sandesh/Desktop/MovieFlix/MovieFlixApp/MovieFlixApp/MovieCell.swift; sourceTree = "<absolute>"; };
+		02B2BC6C246FB4A10060C17E /* MovieDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsVC.swift; sourceTree = "<group>"; };
 		02CE4DE3246D08B300770AE6 /* MoviesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesModel.swift; sourceTree = "<group>"; };
 		02CE4DE5246D091200770AE6 /* Webservice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Webservice.swift; sourceTree = "<group>"; };
 		02CE4DEB246D0E6D00770AE6 /* MoviesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoviesViewModel.swift; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 			children = (
 				0284A86C246CFE12009602CD /* MovieCell.swift */,
 				0284A83B246CFABB009602CD /* ViewController.swift */,
+				02B2BC6C246FB4A10060C17E /* MovieDetailsVC.swift */,
 			);
 			path = "Now Playing";
 			sourceTree = "<group>";
@@ -502,6 +505,7 @@
 				0284A83A246CFABB009602CD /* SceneDelegate.swift in Sources */,
 				02320E59246EA82400A7C2CC /* TopratedMoviesVC.swift in Sources */,
 				02CE4DEC246D0E6E00770AE6 /* MoviesViewModel.swift in Sources */,
+				02B2BC6D246FB4A10060C17E /* MovieDetailsVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -606,7 +610,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -660,7 +664,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
