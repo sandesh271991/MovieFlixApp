@@ -8,10 +8,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Movie Now Showing-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="MovieFlixApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="MovieNowShowing" customModule="MovieFlixApp" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -76,6 +76,10 @@
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="wfa-a8-Xdj"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="9IH-kN-36S"/>
+                                </connections>
                             </collectionView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -105,7 +109,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HmN-LR-FWc">
-                                <rect key="frame" x="0.0" y="49" width="414" height="808"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="813"/>
                             </imageView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aDD-ee-1km">
                                 <rect key="frame" x="40" y="235" width="334" height="580"/>
@@ -154,7 +158,7 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="HmN-LR-FWc" firstAttribute="top" secondItem="w8U-BN-sjl" secondAttribute="top" constant="5" id="5hI-Q7-Wi9"/>
+                            <constraint firstItem="HmN-LR-FWc" firstAttribute="top" secondItem="w8U-BN-sjl" secondAttribute="top" id="5hI-Q7-Wi9"/>
                             <constraint firstItem="w8U-BN-sjl" firstAttribute="bottom" secondItem="aDD-ee-1km" secondAttribute="bottom" constant="47" id="5tE-O5-fB4"/>
                             <constraint firstItem="aDD-ee-1km" firstAttribute="top" secondItem="w8U-BN-sjl" secondAttribute="top" constant="191" id="FkR-NA-xhI"/>
                             <constraint firstItem="w8U-BN-sjl" firstAttribute="trailing" secondItem="HmN-LR-FWc" secondAttribute="trailing" id="IJp-nA-sUm"/>

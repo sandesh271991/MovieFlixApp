@@ -10,7 +10,6 @@
 import Foundation
 import UIKit
 
-
 let imageCache = NSCache<NSString, UIImage>()
 extension UIImageView {
     func loadImageUsingCache(withUrl urlString : String) {
@@ -26,6 +25,8 @@ extension UIImageView {
         
         let activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView.init(style: .medium)
         addSubview(activityIndicator)
+        activityIndicator.color = .orange
+       // activityIndicatorViewStyle = .whiteLarge
         activityIndicator.startAnimating()
         activityIndicator.center = self.center
         
