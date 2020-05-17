@@ -1,15 +1,15 @@
 //
-//  Movie+Tableview.swift
+//  TopRatedMovie+CollectionView.swift
 //  MovieFlixApp
 //
-//  Created by Sandesh on 16/05/20.
+//  Created by Sandesh on 17/05/20.
 //  Copyright © 2020 Sandesh. All rights reserved.
 //
 
 import Foundation
 import UIKit
 
-extension MovieNowShowing:  UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension TopRatedMoviesVC:  UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 20.0
@@ -24,7 +24,7 @@ extension MovieNowShowing:  UICollectionViewDelegate, UICollectionViewDataSource
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellID", for: indexPath) as? MovieNowPlayingCell {
+        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellID", for: indexPath) as? TopRatedMovieCell {
             
             cell.lblMovieName.text = "\(String(describing: searchArray[indexPath.row].title))"
             cell.imgMovie.loadImageUsingCache(withUrl: IMAGE_PATH + "\(String(describing: searchArray[indexPath.row].posterPath))")
@@ -51,8 +51,10 @@ extension MovieNowShowing:  UICollectionViewDelegate, UICollectionViewDataSource
     
     internal func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath){
         
-        let movieDetailsVC = self.storyboard?.instantiateViewController(identifier: "MovieDetailsVC") as! MovieDetailsVC
+        let movieDetailsVC = self.storyboard?.instantiateViewController(identifier: "TopRatedMovieDetailsVC") as! TopRatedMovieDetailsVC
         movieDetailsVC.movieDetails = searchArray[indexPath.row]
         self.navigationController?.pushViewController(movieDetailsVC, animated: true)
     }
 }
+
+

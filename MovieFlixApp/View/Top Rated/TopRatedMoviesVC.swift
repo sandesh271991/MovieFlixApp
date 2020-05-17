@@ -1,14 +1,15 @@
 //
-//  ViewController.swift
+//  TopratedMoviesVC.swift
 //  MovieFlixApp
 //
-//  Created by Sandesh on 14/05/20.
+//  Created by Sandesh on 15/05/20.
 //  Copyright © 2020 Sandesh. All rights reserved.
 //
 
+
 import UIKit
 
-class MovieNowShowing: UIViewController {
+class TopRatedMoviesVC: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView! {
         didSet {
@@ -16,14 +17,15 @@ class MovieNowShowing: UIViewController {
         }
     }
     
-    var searchArray = [Result]()
-    var realData = [Result]()
-    var moviesViewModel: MoviesViewModel?
-    var movieData: Movies? {
+    var refreshControl: UIRefreshControl?
+    var searchArray = [TopRatedMoviesResult]()
+    var realData = [TopRatedMoviesResult]()
+    var moviesViewModel: TopRatedMoviesViewModel?
+    var movieData: TopRatedMovies? {
         
         didSet {
             guard let movieData = movieData else { return }
-            moviesViewModel = MoviesViewModel.init(moviesdata: movieData)
+            moviesViewModel = TopRatedMoviesViewModel(topratedMoviesData: movieData)
             searchArray = moviesViewModel?.result ?? []
             realData = moviesViewModel?.result ?? []
             
@@ -38,6 +40,7 @@ class MovieNowShowing: UIViewController {
         super.viewDidLoad()
         getMoviesData()
         searchBar()
+        refresh()
     }
     
     //MARK: UI
@@ -47,11 +50,21 @@ class MovieNowShowing: UIViewController {
         self.definesPresentationContext = true
     }
     
+    //MARK: Refresh
+    func refresh(){
+        self.refreshControl = UIRefreshControl.init()
+        self.refreshControl?.addTarget(self, action: #selector(getMoviesData), for: .valueChanged)
+        self.collectionView?.addSubview(refreshControl!)
+    }
+    
     //MARK: To Get Movie Data
-    func getMoviesData(){
+   @objc func getMoviesData(){
         if isConnectedToInternet() == true {
-            Webservice.shared.getMovieData(with: BASE_URL_NOW_SHOWING_MOVIE + "api_key=" + API_KEY ) { (moviesData, error) in
+            Webservice.shared.getTopRatedMoviesData(with: BASE_URL_TOP_RATED_MOVIE + "api_key=" + API_KEY ) { (moviesData, error) in
+                
+                self.refreshControl?.endRefreshing()
                 if error != nil {
+                    self.showAlert(title: "Something went wrong", message: "Please check your internet connection or try later")
                     return
                 }
                 guard let moviesData = moviesData else {return}
@@ -62,7 +75,6 @@ class MovieNowShowing: UIViewController {
             showAlert(title: "No Internet Connection", message: "Please check your internet connection")
         }
     }
-    
     
     //MARK: To Remove Movie
     @objc func swipeToDelete(sender: UISwipeGestureRecognizer) {
@@ -75,18 +87,6 @@ class MovieNowShowing: UIViewController {
         }, completion: nil)
         
         self.realData = self.searchArray
-    }
-    
-    @IBAction func deleteButtonTapped(sender: UIButton)  -> Void {
-        
-        let indexPath = IndexPath(row: sender.tag, section: 0)
-        showAlert(title: "Movie - \(searchArray[indexPath.item].title) - Deleted", message: "")
-        self.searchArray.remove(at: indexPath.item)
-        collectionView.deleteItems(at: [indexPath])
-        
-        // searchArray.remove(at: itemIndex)
-        self.realData = self.searchArray
-        //self.collectionView.reloadData()
     }
     
     //MARK: Compositional Collection View
@@ -112,4 +112,3 @@ class MovieNowShowing: UIViewController {
         return UICollectionViewCompositionalLayout(section: section)
     }
 }
-

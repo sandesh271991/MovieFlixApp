@@ -1,16 +1,16 @@
 //
-//  MovieDetailsVC.swift
+//  TopRatedMovieDetailsVC.swift
 //  MovieFlixApp
 //
-//  Created by Sandesh on 16/05/20.
+//  Created by Sandesh on 17/05/20.
 //  Copyright © 2020 Sandesh. All rights reserved.
 //
 
 import UIKit
 
-class MovieDetailsVC: UIViewController {
+class TopRatedMovieDetailsVC: UIViewController {
 
-    var movieDetails: Result?
+    var movieDetails: TopRatedMoviesResult?
     
     @IBOutlet weak var imgMovieBG: UIImageView!
     @IBOutlet weak var lblMovieOverview: UILabel!
