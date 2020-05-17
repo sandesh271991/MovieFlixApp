@@ -18,16 +18,16 @@ class TopRatedMoviesVC: UIViewController {
     }
     
     var refreshControl: UIRefreshControl?
-    var searchArray = [TopRatedMoviesResult]()
-    var realData = [TopRatedMoviesResult]()
+    var moviesSearchList = [TopRatedMoviesResult]()
+    var moviesList = [TopRatedMoviesResult]()
     var moviesViewModel: TopRatedMoviesViewModel?
     var movieData: TopRatedMovies? {
         
         didSet {
             guard let movieData = movieData else { return }
             moviesViewModel = TopRatedMoviesViewModel(topratedMoviesData: movieData)
-            searchArray = moviesViewModel?.result ?? []
-            realData = moviesViewModel?.result ?? []
+            moviesSearchList = moviesViewModel?.result ?? []
+            moviesList = moviesViewModel?.result ?? []
             
             DispatchQueue.main.async {
                 self.collectionView.reloadData()
@@ -80,13 +80,13 @@ class TopRatedMoviesVC: UIViewController {
     @objc func swipeToDelete(sender: UISwipeGestureRecognizer) {
         let cell = sender.view as! UICollectionViewCell
         let itemIndex = self.collectionView.indexPath(for: cell)!.item
-        showAlert(title: "Movie - \(searchArray[itemIndex].title) - Deleted", message: "")
+        showAlert(title: "Movie - \(moviesSearchList[itemIndex].title) - Deleted", message: "")
         self.collectionView.performBatchUpdates({
             collectionView.deleteItems(at: [(NSIndexPath(item: itemIndex, section: 0) as IndexPath)])
-            searchArray.remove(at: itemIndex)
+            moviesSearchList.remove(at: itemIndex)
         }, completion: nil)
         
-        self.realData = self.searchArray
+        self.moviesList = self.moviesSearchList
     }
     
     //MARK: Compositional Collection View

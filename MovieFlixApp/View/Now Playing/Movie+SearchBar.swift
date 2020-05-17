@@ -12,22 +12,22 @@ import UIKit
 extension MovieNowShowing:  UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        self.searchArray.removeAll()
-        for item in realData{
+        self.moviesSearchList.removeAll()
+        for item in moviesList{
             if (item.title.contains(searchBar.text!)) {
-                self.searchArray.append(item)
+                self.moviesSearchList.append(item)
             }
         }
         
         if searchText == "" {
-            self.searchArray = self.realData
+            self.moviesSearchList = self.moviesList
         }
         self.collectionView.reloadData()
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        self.searchArray.removeAll()
-        self.searchArray = self.realData
+        self.moviesSearchList.removeAll()
+        self.moviesSearchList = self.moviesList
         self.collectionView.reloadData()
     }
 }
