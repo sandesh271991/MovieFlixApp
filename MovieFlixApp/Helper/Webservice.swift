@@ -10,10 +10,11 @@ import Foundation
 import Alamofire
 
 
-//Now Playing
 class Webservice: NSObject {
     static let shared = Webservice()
-    func getData(with url: String, completion:@escaping (_ data: Movies?, _ error: Error?) -> Void) {
+    
+    //Now Playing
+    func getMovieData(with url: String, completion:@escaping (_ data: Movies?, _ error: Error?) -> Void) {
         AF.request(url).responseData { (responseData) in
             switch responseData.result {
             case .success(let data):
@@ -35,7 +36,7 @@ class Webservice: NSObject {
         }
     }
     
-    
+    //Top Rated Movies
     func getTopRatedMoviesData(with url: String, completion:@escaping (_ data: TopRatedMovies?, _ error: Error?) -> Void) {
         AF.request(url).responseData { (responseData) in
             switch responseData.result {

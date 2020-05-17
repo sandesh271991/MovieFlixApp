@@ -25,7 +25,7 @@ extension UIImageView {
         
         let activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView.init(style: .medium)
         addSubview(activityIndicator)
-        activityIndicator.color = .orange
+        activityIndicator.color = .black
        // activityIndicatorViewStyle = .whiteLarge
         activityIndicator.startAnimating()
         activityIndicator.center = self.center

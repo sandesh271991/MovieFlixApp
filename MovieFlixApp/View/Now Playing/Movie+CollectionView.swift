@@ -11,6 +11,12 @@ import UIKit
 
 extension MovieNowShowing:  UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 20.0
+    }
+    
+    
+    
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
@@ -31,14 +37,10 @@ extension MovieNowShowing:  UICollectionViewDelegate, UICollectionViewDataSource
             UpSwipe.direction = UISwipeGestureRecognizer.Direction.left
             cell.addGestureRecognizer(UpSwipe)
             
-            //Delete button
-            let editButton = UIButton(frame: CGRect(x: cell.bounds.width - 50, y: (cell.bounds.height) - 50 , width: 50, height: 50))
-            editButton.setBackgroundImage(UIImage(systemName: "xmark.circle.fill"), for: UIControl.State.normal)
-            editButton.tintColor = .red
-            editButton.addTarget(self, action: #selector(deleteButtonTapped), for: UIControl.Event.touchUpInside)
-            editButton.tag = indexPath.row
-            editButton.isUserInteractionEnabled = true
-            cell.addSubview(editButton)
+            //Delete Button
+            cell.btnRemove.addTarget(self, action: #selector(deleteButtonTapped), for: UIControl.Event.touchUpInside)
+            cell.btnRemove.tag = indexPath.row
+            cell.btnRemove.isUserInteractionEnabled = true
             
             return cell
         } else {

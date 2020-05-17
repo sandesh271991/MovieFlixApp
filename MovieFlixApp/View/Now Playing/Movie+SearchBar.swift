@@ -13,7 +13,7 @@ extension MovieNowShowing:  UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         self.searchArray.removeAll()
-        for item in moviesViewModel?.result ?? []{
+        for item in realData{
             if (item.title.contains(searchBar.text!)) {
                 self.searchArray.append(item)
             }
