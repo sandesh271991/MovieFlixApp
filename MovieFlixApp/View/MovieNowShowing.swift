@@ -1,5 +1,5 @@
 //
-//  ViewController2.swift
+//  ViewController1.swift
 //  MovieFlixApp
 //
 //  Created by Sandesh on 17/05/20.
@@ -8,16 +8,16 @@
 
 import UIKit
 
-class ViewController2: UIViewController {
+class MovieNowShowing: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "views" {
-            let destVC = segue.destination as! MovieNowShowing
-            destVC.fromScreen = "two"
+        if segue.identifier == "fromNowPlaying" {
+            let destVC = segue.destination as! CommonVC
+            destVC.fromScreen = FROM_NOW_PLAYING
         }
     }
 }

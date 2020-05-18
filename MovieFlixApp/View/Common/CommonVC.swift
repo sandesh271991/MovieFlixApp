@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MovieNowShowing: UIViewController {
+class CommonVC: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView! {
         didSet {
@@ -18,7 +18,7 @@ class MovieNowShowing: UIViewController {
     @IBOutlet weak var searchBar: UISearchBar!
     
     var fromScreen: String?
-    
+
     var refreshControl: UIRefreshControl?
     
     var moviesSearchList = [Result]()
@@ -27,10 +27,8 @@ class MovieNowShowing: UIViewController {
     var topRatedMoviesSearchList = [TopRatedMoviesResult]()
     var topRatedMoviesList = [TopRatedMoviesResult]()
     
-    
     var moviesViewModel: MoviesViewModel?
     var movieData: Movies? {
-        
         didSet {
             guard let movieData = movieData else { return }
             moviesViewModel = MoviesViewModel.init(moviesdata: movieData)
@@ -43,10 +41,8 @@ class MovieNowShowing: UIViewController {
         }
     }
     
-    
     var topRatedMoviesViewModel: TopRatedMoviesViewModel?
     var topRatedMovieData: TopRatedMovies? {
-        
         didSet {
             guard let movieData = topRatedMovieData else { return }
             topRatedMoviesViewModel = TopRatedMoviesViewModel(topratedMoviesData: movieData)
@@ -60,34 +56,13 @@ class MovieNowShowing: UIViewController {
     }
     
     
-    
     //MARK: View LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        
-        if fromScreen == "one" {
-            print("From one screen")
-        }
-        if fromScreen == "two" {
-            print("From two screen")
-        }
-        
-        
         getMoviesData()
         refresh()
     }
-    
-    //MARK: UI
-//    func searchBar(){
-//        self.navigationItem.searchController = UISearchController(searchResultsController: nil)
-//        self.navigationItem.searchController?.searchBar.delegate = self
-//        self.definesPresentationContext = true
-//    }
-    
+
     //MARK: Refresh
     func refresh(){
         self.refreshControl = UIRefreshControl.init()
@@ -99,7 +74,7 @@ class MovieNowShowing: UIViewController {
     @objc func getMoviesData(){
         if isConnectedToInternet() == true {
             
-            if fromScreen == "one" {
+            if fromScreen == FROM_NOW_PLAYING {
                 Webservice.shared.getMovieData(with: BASE_URL_NOW_SHOWING_MOVIE + "api_key=" + API_KEY ) { (moviesData, error) in
                     
                     self.refreshControl?.endRefreshing()
@@ -135,23 +110,24 @@ class MovieNowShowing: UIViewController {
         let cell = sender.view as! UICollectionViewCell
         let itemIndex = self.collectionView.indexPath(for: cell)!.item
         
-        if fromScreen == "one" {
+        if fromScreen == FROM_NOW_PLAYING {
             showAlert(title: "Movie - \(moviesSearchList[itemIndex].title) - Deleted", message: "")
             self.collectionView.performBatchUpdates({
                 collectionView.deleteItems(at: [(NSIndexPath(item: itemIndex, section: 0) as IndexPath)])
                 moviesSearchList.remove(at: itemIndex)
-            }, completion: nil)
-            self.moviesList = self.moviesSearchList
+                moviesList.remove(at: itemIndex)
 
+            }, completion: nil)
         }
         else{
             showAlert(title: "Movie - \(topRatedMoviesSearchList[itemIndex].title) - Deleted", message: "")
             self.collectionView.performBatchUpdates({
                 collectionView.deleteItems(at: [(NSIndexPath(item: itemIndex, section: 0) as IndexPath)])
                 topRatedMoviesSearchList.remove(at: itemIndex)
+                topRatedMoviesList.remove(at: itemIndex)
+
             }, completion: nil)
-            self.topRatedMoviesList = self.topRatedMoviesSearchList
-        }   
+        }
     }
     
     //MARK: Compositional Collection View

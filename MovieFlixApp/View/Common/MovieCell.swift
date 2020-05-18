@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MovieNowPlayingCell: UICollectionViewCell {
+class MovieCell: UICollectionViewCell {
     @IBOutlet weak var lblMovieName: UILabel!
     @IBOutlet weak var imgMovie: UIImageView!
     @IBOutlet weak var lblMovieDescription: UILabel!

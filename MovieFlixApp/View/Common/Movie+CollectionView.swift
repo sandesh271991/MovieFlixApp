@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-extension MovieNowShowing:  UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension CommonVC:  UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 20.0
@@ -20,7 +20,7 @@ extension MovieNowShowing:  UICollectionViewDelegate, UICollectionViewDataSource
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if fromScreen == "one"{
+        if fromScreen == FROM_NOW_PLAYING {
             return moviesSearchList.count
         }
         else{
@@ -29,9 +29,9 @@ extension MovieNowShowing:  UICollectionViewDelegate, UICollectionViewDataSource
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellID", for: indexPath) as? MovieNowPlayingCell {
+        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellID", for: indexPath) as? MovieCell {
             
-            if fromScreen == "one" {
+            if fromScreen == FROM_NOW_PLAYING {
                 cell.lblMovieName.text = "\(String(describing: moviesSearchList[indexPath.row].title))"
                 cell.imgMovie.loadImageUsingCache(withUrl: IMAGE_PATH + "\(String(describing: moviesSearchList[indexPath.row].posterPath))")
                 cell.lblMovieDescription.text = "\(String(describing: moviesSearchList[indexPath.row].overview))"
@@ -57,12 +57,12 @@ extension MovieNowShowing:  UICollectionViewDelegate, UICollectionViewDataSource
     internal func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath){
         
         let movieDetailsVC = self.storyboard?.instantiateViewController(identifier: "MovieDetailsVC") as! MovieDetailsVC
-        if fromScreen == "one"{
-            movieDetailsVC.from = "one"
+        if fromScreen == FROM_NOW_PLAYING {
+            movieDetailsVC.fromScreen = FROM_NOW_PLAYING
             movieDetailsVC.movieDetails = moviesSearchList[indexPath.row]
         }
         else{
-            movieDetailsVC.from = "two"
+            movieDetailsVC.fromScreen = FROM_TOP_RATED
             movieDetailsVC.topRatedMovieDetails = topRatedMoviesSearchList[indexPath.row]
         }
         self.navigationController?.pushViewController(movieDetailsVC, animated: true)

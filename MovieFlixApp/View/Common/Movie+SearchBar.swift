@@ -9,11 +9,11 @@
 import Foundation
 import UIKit
 
-extension MovieNowShowing:  UISearchBarDelegate {
+extension CommonVC:  UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
-        if fromScreen == "one"{
+        if fromScreen == FROM_NOW_PLAYING {
             self.moviesSearchList.removeAll()
             for item in moviesList{
                 if (item.title.contains(searchBar.text!)) {
@@ -37,12 +37,11 @@ extension MovieNowShowing:  UISearchBarDelegate {
                 self.topRatedMoviesSearchList = self.topRatedMoviesList
             }
         }
-        
         self.collectionView.reloadData()
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        if fromScreen == "one" {
+        if fromScreen == FROM_NOW_PLAYING {
             self.moviesSearchList.removeAll()
             self.moviesSearchList = self.moviesList
         }
@@ -50,11 +49,9 @@ extension MovieNowShowing:  UISearchBarDelegate {
             self.topRatedMoviesSearchList.removeAll()
             self.topRatedMoviesSearchList = self.topRatedMoviesList
         }
-
-        
+        searchBar.text = ""
         self.collectionView.reloadData()
         searchBar.resignFirstResponder()
-
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {

@@ -13,7 +13,7 @@ class MovieDetailsVC: UIViewController {
     var movieDetails: Result?
     var topRatedMovieDetails: TopRatedMoviesResult?
     
-    var from:String?
+    var fromScreen: String?
 
     @IBOutlet weak var imgMovieBG: UIImageView!
     @IBOutlet weak var lblMovieOverview: UILabel!
@@ -23,7 +23,7 @@ class MovieDetailsVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if from == "one"{
+        if fromScreen == FROM_NOW_PLAYING {
             imgMovieBG.loadImageUsingCache(withUrl: IMAGE_PATH + "\(movieDetails?.posterPath ?? "")")
             lblMovieTitle.text = movieDetails?.title
             lblMovieOverview.text = movieDetails?.overview

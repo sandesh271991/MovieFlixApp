@@ -1,5 +1,5 @@
 //
-//  ViewController1.swift
+//  TopRatedMovie.swift
 //  MovieFlixApp
 //
 //  Created by Sandesh on 17/05/20.
@@ -8,19 +8,16 @@
 
 import UIKit
 
-class ViewController1: UIViewController {
+class TopRatedMovie: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "view" {
-            let destVC = segue.destination as! MovieNowShowing
-            destVC.fromScreen = "one"
+        if segue.identifier == "fromTopRated" {
+            let destVC = segue.destination as! CommonVC
+            destVC.fromScreen = FROM_TOP_RATED
         }
     }
-
 }
