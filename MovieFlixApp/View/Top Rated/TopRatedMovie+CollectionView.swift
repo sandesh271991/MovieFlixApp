@@ -41,14 +41,6 @@ extension TopRatedMoviesVC:  UICollectionViewDelegate, UICollectionViewDataSourc
         }
     }
     
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let kWhateverHeightYouWant = 400
-        
-        return CGSize(width: collectionView.bounds.size.width, height: CGFloat(kWhateverHeightYouWant))
-    }
-    
     internal func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath){
         
         let movieDetailsVC = self.storyboard?.instantiateViewController(identifier: "TopRatedMovieDetailsVC") as! TopRatedMovieDetailsVC

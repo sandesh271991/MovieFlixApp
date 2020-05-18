@@ -28,6 +28,8 @@
 		0284A847246CFAC1009602CD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0284A845246CFAC1009602CD /* LaunchScreen.storyboard */; };
 		0284A852246CFAC1009602CD /* MovieFlixAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0284A851246CFAC1009602CD /* MovieFlixAppTests.swift */; };
 		0284A85D246CFAC1009602CD /* MovieFlixAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0284A85C246CFAC1009602CD /* MovieFlixAppUITests.swift */; };
+		0298918324718E1600932385 /* ViewController1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0298918224718E1600932385 /* ViewController1.swift */; };
+		0298918524718E2F00932385 /* ViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0298918424718E2F00932385 /* ViewController2.swift */; };
 		02B2BC6D246FB4A10060C17E /* MovieDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B2BC6C246FB4A10060C17E /* MovieDetailsVC.swift */; };
 		02CE4DE4246D08B300770AE6 /* MoviesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02CE4DE3246D08B300770AE6 /* MoviesModel.swift */; };
 		02CE4DE6246D091200770AE6 /* Webservice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02CE4DE5246D091200770AE6 /* Webservice.swift */; };
@@ -84,6 +86,8 @@
 		0284A858246CFAC1009602CD /* MovieFlixAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MovieFlixAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0284A85C246CFAC1009602CD /* MovieFlixAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieFlixAppUITests.swift; sourceTree = "<group>"; };
 		0284A85E246CFAC1009602CD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0298918224718E1600932385 /* ViewController1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController1.swift; sourceTree = "<group>"; };
+		0298918424718E2F00932385 /* ViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController2.swift; sourceTree = "<group>"; };
 		02B2BC6C246FB4A10060C17E /* MovieDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsVC.swift; sourceTree = "<group>"; };
 		02CE4DE3246D08B300770AE6 /* MoviesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesModel.swift; sourceTree = "<group>"; };
 		02CE4DE5246D091200770AE6 /* Webservice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Webservice.swift; sourceTree = "<group>"; };
@@ -131,6 +135,8 @@
 			isa = PBXGroup;
 			children = (
 				0284A83B246CFABB009602CD /* MovieNowShowingVC.swift */,
+				0298918224718E1600932385 /* ViewController1.swift */,
+				0298918424718E2F00932385 /* ViewController2.swift */,
 				02CF3CD4247121150038557F /* MovieNowPlayingCell.swift */,
 				0238BF8024702F680063EE12 /* Movie+CollectionView.swift */,
 				0238BF84247030EB0063EE12 /* Movie+SearchBar.swift */,
@@ -511,6 +517,7 @@
 			files = (
 				02320E5D246EB45D00A7C2CC /* UIImage+Extension.swift in Sources */,
 				020E92BC247128EA00B35A6F /* TopRatedMovieDetailsVC.swift in Sources */,
+				0298918324718E1600932385 /* ViewController1.swift in Sources */,
 				020E92BA2471274400B35A6F /* TopRatedMovie+SearchBar.swift in Sources */,
 				0284A83C246CFABB009602CD /* MovieNowShowingVC.swift in Sources */,
 				02CE4DE6246D091200770AE6 /* Webservice.swift in Sources */,
@@ -522,6 +529,7 @@
 				0284A838246CFABB009602CD /* AppDelegate.swift in Sources */,
 				02320E57246EA66C00A7C2CC /* TopRatedMoviesViewModel.swift in Sources */,
 				0238BF87247031A10063EE12 /* AppConstant.swift in Sources */,
+				0298918524718E2F00932385 /* ViewController2.swift in Sources */,
 				0238BF85247030EB0063EE12 /* Movie+SearchBar.swift in Sources */,
 				0284A83A246CFABB009602CD /* SceneDelegate.swift in Sources */,
 				02320E59246EA82400A7C2CC /* TopRatedMoviesVC.swift in Sources */,

@@ -12,22 +12,52 @@ import UIKit
 extension MovieNowShowing:  UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        self.moviesSearchList.removeAll()
-        for item in moviesList{
-            if (item.title.contains(searchBar.text!)) {
-                self.moviesSearchList.append(item)
+        
+        if fromScreen == "one"{
+            self.moviesSearchList.removeAll()
+            for item in moviesList{
+                if (item.title.contains(searchBar.text!)) {
+                    self.moviesSearchList.append(item)
+                }
+            }
+            
+            if searchText == "" {
+                self.moviesSearchList = self.moviesList
+            }
+        }
+        else{
+            self.topRatedMoviesSearchList.removeAll()
+            for item in topRatedMoviesList{
+                if (item.title.contains(searchBar.text!)) {
+                    self.topRatedMoviesSearchList.append(item)
+                }
+            }
+            
+            if searchText == "" {
+                self.topRatedMoviesSearchList = self.topRatedMoviesList
             }
         }
         
-        if searchText == "" {
-            self.moviesSearchList = self.moviesList
-        }
         self.collectionView.reloadData()
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        self.moviesSearchList.removeAll()
-        self.moviesSearchList = self.moviesList
+        if fromScreen == "one" {
+            self.moviesSearchList.removeAll()
+            self.moviesSearchList = self.moviesList
+        }
+        else{
+            self.topRatedMoviesSearchList.removeAll()
+            self.topRatedMoviesSearchList = self.topRatedMoviesList
+        }
+
+        
         self.collectionView.reloadData()
+        searchBar.resignFirstResponder()
+
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
     }
 }

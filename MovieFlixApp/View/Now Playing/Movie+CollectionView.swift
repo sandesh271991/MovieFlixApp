@@ -20,15 +20,28 @@ extension MovieNowShowing:  UICollectionViewDelegate, UICollectionViewDataSource
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return moviesSearchList.count
+        if fromScreen == "one"{
+            return moviesSearchList.count
+        }
+        else{
+            return topRatedMoviesSearchList.count
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellID", for: indexPath) as? MovieNowPlayingCell {
             
-            cell.lblMovieName.text = "\(String(describing: moviesSearchList[indexPath.row].title))"
-            cell.imgMovie.loadImageUsingCache(withUrl: IMAGE_PATH + "\(String(describing: moviesSearchList[indexPath.row].posterPath))")
-            cell.lblMovieDescription.text = "\(String(describing: moviesSearchList[indexPath.row].overview))"
+            if fromScreen == "one" {
+                cell.lblMovieName.text = "\(String(describing: moviesSearchList[indexPath.row].title))"
+                cell.imgMovie.loadImageUsingCache(withUrl: IMAGE_PATH + "\(String(describing: moviesSearchList[indexPath.row].posterPath))")
+                cell.lblMovieDescription.text = "\(String(describing: moviesSearchList[indexPath.row].overview))"
+            }
+            else{
+                cell.lblMovieName.text = "\(String(describing: topRatedMoviesSearchList[indexPath.row].title))"
+                cell.imgMovie.loadImageUsingCache(withUrl: IMAGE_PATH + "\(String(describing: topRatedMoviesSearchList[indexPath.row].posterPath))")
+                cell.lblMovieDescription.text = "\(String(describing: topRatedMoviesSearchList[indexPath.row].overview))"
+            }
+
             
             //Swipe to Delete
             let UpSwipe = UISwipeGestureRecognizer(target: self, action: #selector(swipeToDelete))
@@ -41,18 +54,17 @@ extension MovieNowShowing:  UICollectionViewDelegate, UICollectionViewDataSource
         }
     }
     
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let kWhateverHeightYouWant = 400
-        
-        return CGSize(width: collectionView.bounds.size.width, height: CGFloat(kWhateverHeightYouWant))
-    }
-    
     internal func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath){
         
         let movieDetailsVC = self.storyboard?.instantiateViewController(identifier: "MovieDetailsVC") as! MovieDetailsVC
-        movieDetailsVC.movieDetails = moviesSearchList[indexPath.row]
+        if fromScreen == "one"{
+            movieDetailsVC.from = "one"
+            movieDetailsVC.movieDetails = moviesSearchList[indexPath.row]
+        }
+        else{
+            movieDetailsVC.from = "two"
+            movieDetailsVC.topRatedMovieDetails = topRatedMoviesSearchList[indexPath.row]
+        }
         self.navigationController?.pushViewController(movieDetailsVC, animated: true)
     }
 }

@@ -13,11 +13,11 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="MovieNowShowing" customModule="MovieFlixApp" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="725"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="F50-nk-uyc">
-                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <rect key="frame" x="0.0" y="110" width="414" height="615"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="20" id="Td1-r8-9nk">
                                     <size key="itemSize" width="378" height="180"/>
@@ -108,24 +108,38 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="9IH-kN-36S"/>
                                 </connections>
                             </collectionView>
+                            <searchBar contentMode="redraw" placeholder="Search Movie" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DKh-Pb-GbI">
+                                <rect key="frame" x="5" y="49" width="414" height="56"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="search" enablesReturnKeyAutomatically="YES"/>
+                                <scopeButtonTitles>
+                                    <string>Title</string>
+                                </scopeButtonTitles>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="nUA-2n-Ahc"/>
+                                </connections>
+                            </searchBar>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="F50-nk-uyc" secondAttribute="trailing" id="9j0-CE-l96"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="F50-nk-uyc" secondAttribute="bottom" id="Lcw-Lm-hcx"/>
+                            <constraint firstItem="F50-nk-uyc" firstAttribute="top" secondItem="DKh-Pb-GbI" secondAttribute="bottom" constant="5" id="Mh2-pu-xUh"/>
+                            <constraint firstItem="DKh-Pb-GbI" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="5" id="Zty-gU-AUJ"/>
+                            <constraint firstItem="DKh-Pb-GbI" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" constant="5" id="dOw-f9-KJD"/>
                             <constraint firstItem="F50-nk-uyc" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="gMg-iZ-Xeu"/>
-                            <constraint firstItem="F50-nk-uyc" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="tkV-8W-PSv"/>
+                            <constraint firstItem="DKh-Pb-GbI" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="5" id="gnC-bC-lf8"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="oLO-Mh-5Uu"/>
                     <connections>
                         <outlet property="collectionView" destination="F50-nk-uyc" id="Esd-ee-Uhk"/>
+                        <outlet property="searchBar" destination="DKh-Pb-GbI" id="lbH-IE-Oey"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2015.9420289855075" y="-143.30357142857142"/>
+            <point key="canvasLocation" x="2888" y="-143"/>
         </scene>
         <!--Movie DetailsVC-->
         <scene sceneID="Lbi-mY-cd5">
@@ -233,7 +247,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tlA-sp-kaZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2839.130434782609" y="-143.30357142857142"/>
+            <point key="canvasLocation" x="3839" y="-120"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="aZ6-Sm-iG5">
@@ -267,12 +281,42 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="Atb-lc-liR"/>
+                        <segue destination="H7W-jH-ThY" kind="relationship" relationship="rootViewController" id="hOS-2q-UH6"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nrs-ac-COW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1019" y="-143"/>
+        </scene>
+        <!--View Controller1-->
+        <scene sceneID="r9S-V4-xXj">
+            <objects>
+                <viewController id="H7W-jH-ThY" customClass="ViewController1" customModule="MovieFlixApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="OP1-D7-CGF">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x73-yU-SP9">
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <connections>
+                                    <segue destination="BYZ-38-t0r" kind="embed" identifier="view" id="dx5-ez-oju"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="rFl-y6-RgU" firstAttribute="bottom" secondItem="x73-yU-SP9" secondAttribute="bottom" id="JQN-re-Lhl"/>
+                            <constraint firstItem="rFl-y6-RgU" firstAttribute="trailing" secondItem="x73-yU-SP9" secondAttribute="trailing" id="WVs-dP-TKT"/>
+                            <constraint firstItem="x73-yU-SP9" firstAttribute="top" secondItem="rFl-y6-RgU" secondAttribute="top" id="xfG-Lc-4CC"/>
+                            <constraint firstItem="x73-yU-SP9" firstAttribute="leading" secondItem="rFl-y6-RgU" secondAttribute="leading" id="zad-3b-vhs"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="rFl-y6-RgU"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="xV6-TM-NGL"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1dV-yK-kQR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1925" y="-143"/>
         </scene>
         <!--Top Rated MoviesVC-->
         <scene sceneID="lPJ-fk-JFy">
@@ -283,7 +327,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="GjR-Ao-LSl">
-                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="20" id="gxi-mi-aLk">
                                     <size key="itemSize" width="378" height="180"/>
@@ -391,7 +435,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vkx-XE-kBm" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1968.1159420289857" y="601.33928571428567"/>
+            <point key="canvasLocation" x="2768" y="622"/>
         </scene>
         <!--Top Rated-->
         <scene sceneID="oBK-va-SFQ">
@@ -405,7 +449,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="eJU-Td-55V" kind="relationship" relationship="rootViewController" id="4Hg-Hv-afZ"/>
+                        <segue destination="2BY-s7-Qrn" kind="relationship" relationship="rootViewController" id="UR4-tC-BDi"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nIb-UD-MT1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -518,7 +562,37 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EWb-76-yup" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2839" y="601"/>
+            <point key="canvasLocation" x="3632" y="611"/>
+        </scene>
+        <!--View Controller2-->
+        <scene sceneID="scS-bZ-bdp">
+            <objects>
+                <viewController id="2BY-s7-Qrn" customClass="ViewController2" customModule="MovieFlixApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="lOW-In-0Jb">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uvh-Ce-5t1">
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <connections>
+                                    <segue destination="BYZ-38-t0r" kind="embed" identifier="views" id="4KV-sh-zqF"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Uvh-Ce-5t1" firstAttribute="leading" secondItem="HRX-d6-Vk3" secondAttribute="leading" id="F8n-Ii-2tr"/>
+                            <constraint firstItem="HRX-d6-Vk3" firstAttribute="bottom" secondItem="Uvh-Ce-5t1" secondAttribute="bottom" id="hB2-vs-24w"/>
+                            <constraint firstItem="Uvh-Ce-5t1" firstAttribute="top" secondItem="HRX-d6-Vk3" secondAttribute="top" id="id8-6G-uZU"/>
+                            <constraint firstItem="HRX-d6-Vk3" firstAttribute="trailing" secondItem="Uvh-Ce-5t1" secondAttribute="trailing" id="mdx-S7-XyX"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="HRX-d6-Vk3"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="mN2-mC-MV2"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7Ad-a5-DdC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1925" y="593"/>
         </scene>
     </scenes>
     <resources>
@@ -527,4 +601,7 @@
         <image name="star" catalog="system" width="64" height="58"/>
         <image name="star.circle" catalog="system" width="64" height="60"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="4KV-sh-zqF"/>
+    </inferredMetricsTieBreakers>
 </document>
